@@ -19,7 +19,7 @@ jobs:
       - run: 
           name: install npm
           command: 'sudo npm install -g npm@5'
-      - restore_cahe:
+      - restore_cache:
           key: dependency-cahe-{{ checksum "package-lock.json" }}
       - run: 
           name: install dependencies
