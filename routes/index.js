@@ -5,7 +5,7 @@ var router = express.Router();
 var itemList = ['Coffee', 'Tea', 'Milk'];
 
 // GET /items
-router.get('/items', function(req, res) {
+router.get('/', function(req, res) {
   res.send(itemList);
 });
 
