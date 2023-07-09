@@ -1,5 +1,5 @@
 const assert = require('assert');
-const app = require('./app');
+const app = require('../app');
 
 describe('Test Express App', function() {
   it('should return a list of items', function() {
