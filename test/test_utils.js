@@ -10,7 +10,7 @@ describe('Test Express App', function() {
       };
       const res = {
         status: function(code) {
-          assert.strictEqual(code, 200);
+          assert.strictEqual(code, 201);
           return this;
         },
         send: function(data) {
