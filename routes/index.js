@@ -4,16 +4,16 @@ var router = express.Router();
 // List of items
 var itemList = ['Coffee', 'Tea', 'Milk'];
 
-// GET /items
+// GET /
 router.get('/', function(req, res) {
-  res.send(itemList);
+  res.render('index', { title: 'CA SimpleApp', items: itemList });
 });
 
 // POST /items
-router.post('/', function(req, res) {
+router.post('/items', function(req, res) {
   var newItem = req.body.item;
   itemList.push(newItem);
-  res.send('Item added successfully');
+  res.redirect('/');
 });
 
 module.exports = router;
