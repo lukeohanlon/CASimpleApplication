@@ -5,11 +5,33 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <ul>
+    <ul id="item-list">
       <li>Coffee</li>
       <li>Tea</li>
       <li>Milk</li>
-      <li>add more...</li>
     </ul>
+    <form id="add-item-form">
+      <input type="text" id="new-item" placeholder="Add an item">
+      <button type="submit">Add</button>
+    </form>
+    <script>
+      const form = document.getElementById('add-item-form');
+      const itemList = document.getElementById('item-list');
+      
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const newItemInput = document.getElementById('new-item');
+        const newItemValue = newItemInput.value.trim();
+        
+        if (newItemValue !== '') {
+          const newItem = document.createElement('li');
+          newItem.textContent = newItemValue;
+          itemList.appendChild(newItem);
+          
+          newItemInput.value = '';
+        }
+      });
+    </script>
   </body>
 </html>
