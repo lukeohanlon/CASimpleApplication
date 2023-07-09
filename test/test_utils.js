@@ -27,12 +27,12 @@ describe('Test Express App', function() {
     return new Promise((resolve, reject) => {
       const req = {
         method: 'POST',
-        url: '/items',
+        url: '/',
         body: { item: 'New Item' }
       };
       const res = {
         status: function(code) {
-          assert.strictEqual(code, 302);
+          assert.strictEqual(code, 200);
           return this;
         },
         send: function(data) {

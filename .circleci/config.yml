@@ -1,15 +1,22 @@
 version: 2.1
 
-workflows: 
+workflows:
   version: 2
-  build: 
-    jobs: 
-      - build: 
-        filters: 
-          branches: 
-            only: 
-              - main
+  build-deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - main
       - deploy:
+          filters:
+            branches:
+              only:
+                - main
+          requires:
+            - build
+      - run-tests:
           filters:
             branches:
               only:
@@ -24,17 +31,17 @@ jobs:
       - image: circleci/node:10.16.3
     steps:
       - checkout
-      - run: 
-          name: install npm
+      - run:
+          name: install-npm
           command: 'sudo npm install -g npm@5'
       - restore_cache:
-          key: dependency-cahe-{{ checksum "package-lock.json" }}
-      - run: 
-          name: install dependencies
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: install-dependencies
           command: npm install
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
-          paths: 
+          paths:
             - ./node_modules
 
   deploy:
@@ -45,4 +52,11 @@ jobs:
           name: deploy-application
           command: ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "rm -rf CASimpleApplication/; git clone https://github.com/lukeohanlon/CASimpleApplication.git; source CASimpleApplication/deploy.sh"
 
-
+  run-tests:
+    docker:
+      - image: circleci/node:10.16.3
+    steps:
+      - checkout
+      - run:
+          name: run-tests
+          command: npm test
