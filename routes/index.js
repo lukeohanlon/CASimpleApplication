@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
 });
 
 // POST /items
-router.post('/items', function(req, res) {
+router.post('/', function(req, res) {
   var newItem = req.body.item;
   itemList.push(newItem);
   res.send('Item added successfully');
