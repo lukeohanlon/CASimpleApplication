@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites name="Mocha Tests" time="0.0030" tests="2" failures="2">
-  <testsuite name="Root Suite" timestamp="2023-07-10T16:28:43" tests="0" time="0.0000" failures="0">
+  <testsuite name="Root Suite" timestamp="2023-07-10T16:36:14" tests="0" time="0.0000" failures="0">
   </testsuite>
-  <testsuite name="Test Express App" timestamp="2023-07-10T16:28:43" tests="2" file="/Users/lukeohanlon/Downloads/SimpleApplication/CASimpleApplication/test/test_utils.js" time="0.0030" failures="2">
+  <testsuite name="Test Express App" timestamp="2023-07-10T16:36:14" tests="2" file="/Users/lukeohanlon/Downloads/SimpleApplication/CASimpleApplication/test/test_utils.js" time="0.0030" failures="2">
     <testcase name="Test Express App should return a list of items" time="0.0020" classname="should return a list of items">
       <failure message="stream.listeners is not a function" type="TypeError"><![CDATA[TypeError: stream.listeners is not a function
     at hasPipeDataListeners (node_modules/unpipe/index.js:22:26)

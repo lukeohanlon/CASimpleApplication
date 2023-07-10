@@ -1,5 +1,9 @@
 const assert = require('assert');
-const app = require('../app');
+const express = require('express');
+const app = express();
+const indexRouter = require('../routes/index');
+
+app.use('/', indexRouter);
 
 describe('Test Express App', function() {
   it('should return a list of items', function() {
@@ -10,11 +14,12 @@ describe('Test Express App', function() {
       };
       const res = {
         status: function(code) {
-          assert.strictEqual(code, 201);
+          assert.strictEqual(code, 200);
           return this;
         },
-        send: function(data) {
-          assert(Array.isArray(data), 'Response should be an array');
+        render: function(template, data) {
+          assert.strictEqual(template, 'index');
+          assert(Array.isArray(data.items), 'Response should contain an array of items');
           resolve();
         }
       };
@@ -27,15 +32,12 @@ describe('Test Express App', function() {
     return new Promise((resolve, reject) => {
       const req = {
         method: 'POST',
-        url: '/',
+        url: '/items',
         body: { item: 'New Item' }
       };
       const res = {
-        status: function(code) {
-          assert.strictEqual(code, 200);
-          return this;
-        },
-        send: function(data) {
+        redirect: function(url) {
+          assert.strictEqual(url, '/');
           resolve();
         }
       };
