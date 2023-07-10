@@ -1,25 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="0.0030" tests="2" failures="2">
-  <testsuite name="Root Suite" timestamp="2023-07-10T16:36:14" tests="0" time="0.0000" failures="0">
+<testsuites name="Mocha Tests" time="0.1150" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2023-07-10T17:23:42" tests="0" time="0.0000" failures="0">
   </testsuite>
-  <testsuite name="Test Express App" timestamp="2023-07-10T16:36:14" tests="2" file="/Users/lukeohanlon/Downloads/SimpleApplication/CASimpleApplication/test/test_utils.js" time="0.0030" failures="2">
-    <testcase name="Test Express App should return a list of items" time="0.0020" classname="should return a list of items">
-      <failure message="stream.listeners is not a function" type="TypeError"><![CDATA[TypeError: stream.listeners is not a function
-    at hasPipeDataListeners (node_modules/unpipe/index.js:22:26)
-    at unpipe (node_modules/unpipe/index.js:52:8)
-    at send (node_modules/finalhandler/index.js:306:3)
-    at Immediate.<anonymous> (node_modules/finalhandler/index.js:133:5)
-    at Immediate.<anonymous> (node_modules/express/lib/router/index.js:635:15)
-    at processImmediate (node:internal/timers:468:21)]]></failure>
-    </testcase>
-    <testcase name="Test Express App should add a new item to the list" time="0.0010" classname="should add a new item to the list">
-      <failure message="stream.listeners is not a function" type="TypeError"><![CDATA[TypeError: stream.listeners is not a function
-    at hasPipeDataListeners (node_modules/unpipe/index.js:22:26)
-    at unpipe (node_modules/unpipe/index.js:52:8)
-    at send (node_modules/finalhandler/index.js:306:3)
-    at Immediate.<anonymous> (node_modules/finalhandler/index.js:133:5)
-    at Immediate.<anonymous> (node_modules/express/lib/router/index.js:635:15)
-    at processImmediate (node:internal/timers:468:21)]]></failure>
+  <testsuite name="Test List" timestamp="2023-07-10T17:23:42" tests="1" file="/Users/lukeohanlon/Downloads/SimpleApplication/CASimpleApplication/test/test_utils.js" time="0.1150" failures="0">
+    <testcase name="Test List should return a list of items" time="0.1150" classname="should return a list of items">
     </testcase>
   </testsuite>
 </testsuites>

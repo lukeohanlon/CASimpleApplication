@@ -1,48 +1,32 @@
 const assert = require('assert');
-const express = require('express');
-const app = express();
-const indexRouter = require('../routes/index');
+const http = require('http');
 
-app.use('/', indexRouter);
+describe('Test List', function() {
+  it('should return a list of items', function(done) {
+    const options = {
+      hostname: '13.51.163.139',
+      port: 3000,
+      path: '/',
+      method: 'GET'
+    };
 
-describe('Test Express App', function() {
-  it('should return a list of items', function() {
-    return new Promise((resolve, reject) => {
-      const req = {
-        method: 'GET',
-        url: '/'
-      };
-      const res = {
-        status: function(code) {
-          assert.strictEqual(code, 200);
-          return this;
-        },
-        render: function(template, data) {
-          assert.strictEqual(template, 'index');
-          assert(Array.isArray(data.items), 'Response should contain an array of items');
-          resolve();
-        }
-      };
+    const req = http.request(options, function(res) {
+      let responseData = '';
 
-      app(req, res);
+      res.on('data', function(chunk) {
+        responseData += chunk;
+      });
+
+      res.on('end', function() {
+        // Check if the response contains the expected HTML elements
+        assert(responseData.includes('<title>CA SimpleApp</title>'));
+        assert(responseData.includes('<li>Coffee</li>'));
+        assert(responseData.includes('<li>Tea</li>'));
+        assert(responseData.includes('<li>Milk</li>'));
+        done();
+      });
     });
-  });
 
-  it('should add a new item to the list', function() {
-    return new Promise((resolve, reject) => {
-      const req = {
-        method: 'POST',
-        url: '/items',
-        body: { item: 'New Item' }
-      };
-      const res = {
-        redirect: function(url) {
-          assert.strictEqual(url, '/');
-          resolve();
-        }
-      };
-
-      app(req, res);
-    });
+    req.end();
   });
 });

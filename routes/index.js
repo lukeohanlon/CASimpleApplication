@@ -1,17 +1,17 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 // List of items
-var itemList = ['Coffee', 'Tea', 'Milk'];
+const itemList = ['Coffee', 'Tea', 'Milk'];
 
 // GET /
-router.get('/', function(req, res) {
+router.get('/', function(req, res, next) {
   res.render('index', { title: 'CA SimpleApp', items: itemList });
 });
 
 // POST /items
-router.post('/', function(req, res) {
-  var newItem = req.body.item;
+router.post('/items', function(req, res, next) {
+  const newItem = req.body.item;
   itemList.push(newItem);
   res.redirect('/');
 });
